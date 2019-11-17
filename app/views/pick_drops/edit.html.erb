@@ -1,0 +1,9 @@
+<h1>Editing Pick Drop</h1>
+<%= bootstrap_flash %> 
+<%= simple_form_for [@trip, @pick_drop] do |f| %>
+
+<%= f.input :address %>
+<%= f.submit "Update" %> 
+<% end %>
+
+

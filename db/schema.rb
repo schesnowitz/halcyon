@@ -10,15 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_23_223555) do
+ActiveRecord::Schema.define(version: 2019_11_14_103146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pages", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "name"
+    t.string "address"
+    t.string "email"
+    t.string "load_contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "drivers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.date "hire_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pick_drops", force: :cascade do |t|
+    t.string "address"
+    t.boolean "pick_up"
+    t.boolean "drop_off"
+    t.integer "order"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_pick_drops_on_trip_id"
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.decimal "amount"
+    t.string "origin_business_name"
+    t.string "origin_address"
+    t.decimal "distance"
+    t.string "final_destination_address"
+    t.string "final_destination_business_name"
+    t.bigint "customer_id"
+    t.bigint "driver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_trips_on_customer_id"
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+  end
+
+  add_foreign_key "pick_drops", "trips"
+  add_foreign_key "trips", "customers"
+  add_foreign_key "trips", "drivers"
 end

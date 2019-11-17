@@ -1,0 +1,13 @@
+  
+  <%= simple_form_for(@trip) do |f| %>
+  <%= f.simple_fields_for :pick_drops do |builder| %>
+  
+  <div class="form-inputs">
+    <%= f.input :address %>
+    <%= f.input :pick_up %>
+    <%= f.input :drop_off %>
+    <%= f.input :order %>
+    <%= f.association :trip %>
+  </div>
+<% end %>
+<% end %>

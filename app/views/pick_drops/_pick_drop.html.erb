@@ -1,0 +1,4 @@
+<%= pick_drop.address %>
+<%= link_to 'Edit PD', edit_trip_pick_drop_path(pick_drop.trip, pick_drop), class: 'btn btn-outline-info btn-sm' %> 
+<%= link_to 'Delete', [pick_drop.trip, pick_drop], method: :delete, data: {confirm: "This can't be undone!" }, class: 'btn btn-danger btn-sm'%>
+

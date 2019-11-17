@@ -1,0 +1,54 @@
+<p id="notice"><%= bootstrap_flash %></p>
+<p>
+  <strong>Customer name:</strong>
+  <%= @trip.customer.name %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @trip.driver.driver_full_name %>
+</p>
+
+
+<p>
+  <strong>Amount:</strong>
+  <%= number_to_currency(@trip.amount) %>
+</p>
+
+<p>
+  <strong>origin_business_name:</strong>
+  <%= @trip.origin_business_name %>
+</p>
+
+<p>
+  <strong>Origin_address:</strong>
+  <%= @trip.origin_address %>
+</p>
+
+<p>
+  <strong>final_destination_business_name:</strong>
+  <%= @trip.final_destination_business_name %>
+</p>
+
+
+<p>
+  <strong>final_destination_address:</strong>
+  <%= @trip.final_destination_address %>
+</p>
+
+<p>
+  <strong>distance:</strong>
+  <%= @trip.distance %>
+</p>
+
+
+<p>Pick Drops</p>
+<%= render @trip.pick_drops.order(created_at: :desc) %> 
+<p>
+<p>
+  <strong>Add Pick Drop:</strong>
+  <%= render 'pick_drops/form' %> 
+</p>
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
+

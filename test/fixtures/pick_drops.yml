@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  pick_up: false
+  drop_off: false
+  order: 1
+  trip: one
+
+two:
+  address: MyString
+  pick_up: false
+  drop_off: false
+  order: 1
+  trip: two
