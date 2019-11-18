@@ -5,6 +5,7 @@ class CreateDrivers < ActiveRecord::Migration[5.2]
       t.string :last_name
       t.date :dob
       t.date :hire_date
+      t.decimal :rate
 
       t.timestamps
     end

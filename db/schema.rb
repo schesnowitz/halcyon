@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_103146) do
     t.string "last_name"
     t.date "dob"
     t.date "hire_date"
+    t.decimal "rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -46,6 +47,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_103146) do
 
   create_table "trips", force: :cascade do |t|
     t.decimal "amount"
+    t.decimal "driver_rate"
+    t.decimal "flat_rate"
     t.string "origin_business_name"
     t.string "origin_address"
     t.decimal "distance"

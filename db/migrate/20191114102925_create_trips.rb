@@ -2,6 +2,8 @@ class CreateTrips < ActiveRecord::Migration[5.2]
   def change
     create_table :trips do |t|
       t.decimal :amount
+      t.decimal :driver_rate
+      t.decimal :flat_rate
       t.string :origin_business_name
       t.string :origin_address
       t.decimal :distance

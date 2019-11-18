@@ -11,6 +11,10 @@
 </p>
 
 <p>
+  <strong>Driver Rate:</strong>
+  <%= number_to_currency(@driver.rate) %>
+</p>
+<p>
   <strong>Dob:</strong>
   <%= @driver.dob %>
 </p>
@@ -22,3 +26,28 @@
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Distance</th>
+      <th scope="col">Gross</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @driver.trips.each do |driver| %>
+    <tr>
+      <th><%= driver.distance %></th>
+      <td><%= number_to_currency(driver.amount) %></td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+<% end %>
+  </tbody>
+  
+</table>
+

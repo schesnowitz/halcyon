@@ -1,5 +1,5 @@
 class DriversController < ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
+  before_action :set_driver, only: [:show, :edit, :update, :destroy, :driver_trips]
 
   # GET /drivers
   # GET /drivers.json
@@ -60,7 +60,8 @@ class DriversController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  def driver_trips
+  end 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_driver
@@ -69,6 +70,6 @@ class DriversController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_params
-      params.require(:driver).permit(:first_name, :last_name, :dob, :hire_date, :truck_id)
+      params.require(:driver).permit(:first_name, :last_name, :dob, :hire_date, :truck_id, :rate) 
     end
 end

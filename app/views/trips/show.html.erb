@@ -6,13 +6,19 @@
 
 <p>
   <strong>Driver:</strong>
+  <%= link_to(@trip.driver) do %>
   <%= @trip.driver.driver_full_name %>
+  <% end %>
 </p>
 
+<p>
+  <strong>Driver Rate:</strong>
+  <%= number_to_currency(@trip.amount) %>
+</p>
 
 <p>
   <strong>Amount:</strong>
-  <%= number_to_currency(@trip.amount) %>
+  <%= number_to_currency(@trip.driver_rate) %>
 </p>
 
 <p>

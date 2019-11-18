@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :rate, value: number_with_precision(f.object.rate, precision: 0.1) %> 
     <%= f.input :dob %>
     <%= f.input :hire_date %>
   </div>
