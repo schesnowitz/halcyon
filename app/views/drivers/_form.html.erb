@@ -2,11 +2,14 @@
 <%= simple_form_for(@driver) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+ 
 
   <div class="form-inputs">
     <%= f.input :first_name %>
     <%= f.input :last_name %>
-    <%= f.input :rate, value: number_with_precision(f.object.rate, precision: 0.1) %> 
+    <%= f.number_field :rate, :step => "0.01", min: '0.05', max: '0.99'  %>  
+
+
     <%= f.input :dob %>
     <%= f.input :hire_date %>
   </div>

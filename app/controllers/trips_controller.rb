@@ -33,6 +33,7 @@ class TripsController < ApplicationController
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render :show, status: :created, location: @trip }
       else
+        flash[:danger] = @trip.errors.full_messages.to_sentence
         format.html { render :new }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -47,6 +48,7 @@ class TripsController < ApplicationController
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
         format.json { render :show, status: :ok, location: @trip }
       else
+        flash[:danger] = @trip.errors.full_messages.to_sentence
         format.html { render :edit }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
       end
@@ -71,7 +73,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_rate, :flat_rate, pick_drops_attributes: PickDrop.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_rate, :custom_driver_rate, :custom_flat_rate, :flat_rate, pick_drops_attributes: PickDrop.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end
 

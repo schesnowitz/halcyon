@@ -31,6 +31,7 @@ class DriversController < ApplicationController
         format.html { redirect_to @driver, notice: 'Driver was successfully created.' }
         format.json { render :show, status: :created, location: @driver }
       else
+        flash[:danger] = @driver.errors.full_messages.to_sentence
         format.html { render :new }
         format.json { render json: @driver.errors, status: :unprocessable_entity }
       end
@@ -45,6 +46,7 @@ class DriversController < ApplicationController
         format.html { redirect_to @driver, notice: 'Driver was successfully updated.' }
         format.json { render :show, status: :ok, location: @driver }
       else
+        flash[:danger] = @driver.errors.full_messages.to_sentence
         format.html { render :edit }
         format.json { render json: @driver.errors, status: :unprocessable_entity }
       end

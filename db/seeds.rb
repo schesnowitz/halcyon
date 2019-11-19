@@ -5,7 +5,7 @@ cus4 = Customer.create!(name: "XPO Logistics", address: "any street", email: "em
 
 driver1 = Driver.create!(first_name: "Steve", last_name: "McKnight", rate: 0.50)
 driver2 = Driver.create!(first_name: "Tony", last_name: "Roma", rate: 0.45)
-driver3 = Driver.create!(first_name: "Joe", last_name: "Trucker", rate: 0.38)
+driver3 = Driver.create!(first_name: "Joe", last_name: "Trucker", rate: 0.38) 
 
 
 50.times do

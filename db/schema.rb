@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2019_11_14_103146) do
     t.string "final_destination_business_name"
     t.bigint "customer_id"
     t.bigint "driver_id"
+    t.boolean "custom_driver_rate", default: false
+    t.boolean "custom_flat_rate", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_trips_on_customer_id"

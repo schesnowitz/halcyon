@@ -16,8 +16,22 @@
     <%= f.input :final_destination_business_name %>
     <%= f.input :final_destination_address %>
     <%= f.input :distance %>
-    <%= f.input :driver_rate %>
-    <%= f.input :flat_rate %>
+ <span id='all_custom_driver_rate'>
+    <%= f.input :custom_driver_rate %>
+    <span class='hidden' id='driver_rate_id'>
+    <%= f.number_field :driver_rate, :step => "0.01", min: '0.05', max: '0.99'  %>
+    </span>
+
+</span>
+ 
+ 
+    <span id='all_custom_flat_rate'>
+    <%= f.input :custom_flat_rate %>
+ 
+    <span class='hidden' id='flat_rate_id'>
+      <%= f.input :flat_rate %>
+    </span>
+    </span>
 
   </div>
 
@@ -25,3 +39,41 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script>
+$('#trip_custom_driver_rate').click(function() {
+    if( $(this).is(':checked')) {
+        $("#driver_rate_id, #all_custom_driver_rate").show();
+         $("#all_custom_flat_rate").hide();
+    } else {
+        $("#driver_rate_id").hide();
+        $("#all_custom_flat_rate").show();
+    }
+}); 
+
+$('#trip_custom_flat_rate').click(function() {
+    if( $(this).is(':checked')) {
+        $("#flat_rate_id, #all_custom_flat_rate").show();
+         $("#all_custom_driver_rate").hide();
+    } else {
+        $("#driver_rate_id").hide();
+        $("#all_custom_driver_rate").show();
+    }
+}); 
+
+$('#trip_custom_flat_rate').click(function() {
+    if( $(this).is(':checked')) {
+        $("#flat_rate_id").show();
+    } else {
+        $("#flat_rate_id").hide();
+    }
+}); 
+
+    $('#trip_custom_driver_rate').click(function() {
+        $('#trip_custom_flat_rate').not(this).prop('checked', false);
+    });
+
+        $('#trip_custom_flat_rate').click(function() {
+        $('#trip_custom_driver_rate').not(this).prop('checked', false);
+    });
+</script>

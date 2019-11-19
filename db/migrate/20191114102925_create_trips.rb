@@ -11,7 +11,8 @@ class CreateTrips < ActiveRecord::Migration[5.2]
       t.string :final_destination_business_name
       t.references :customer, foreign_key: true
       t.references :driver, foreign_key: true
-
+      t.boolean :custom_driver_rate, default: false
+      t.boolean :custom_flat_rate, default: false
       t.timestamps
     end
   end
