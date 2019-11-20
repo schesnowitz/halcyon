@@ -13,6 +13,8 @@ class CreateTrips < ActiveRecord::Migration[5.2]
       t.references :driver, foreign_key: true
       t.boolean :custom_driver_rate, default: false
       t.boolean :custom_flat_rate, default: false
+      t.string :status, default: ''
+      t.datetime :completed_on
       t.timestamps
     end
   end

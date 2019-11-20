@@ -6,6 +6,13 @@ class Trip < ApplicationRecord
   validates_presence_of :customer
   accepts_nested_attributes_for :pick_drops, allow_destroy: true, reject_if: proc { |att| att['address'].blank? }
 
+  # enum status: { booked: "booked", on_route: "on_route", completed: "completed" }
+
+
+  enum status: { booked: 'Booked', in_progress: 'In Progress', completed: 'Completed', cancelled: 'Cancelled' }
+  # validates :status, inclusion: { in: statuses.keys }
+
+
   before_save :set_driver_rate
   validates_numericality_of :driver_rate, greater_than_or_equal_to: 0.05, less_than_or_equal_to: 0.99, :message => "Driver Rate needs to be between 0.05 and 0.99", if: :custom_driver_rate? 
 

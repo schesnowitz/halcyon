@@ -1,0 +1,41 @@
+
+<%= simple_form_for [@driver, driver_statement] do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+  <%= f.collection_select :driver_id, Driver.order(:last_name),:id,:driver_full_name, include_blank: true %> 
+
+    <%= f.input :due_date %>
+    <%= f.input :paid %>
+  </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+    <th scope="col">Trip</th>
+      <th scope="col">Distance</th>
+      <th scope="col">Gross</th>
+      <th scope="col">Driver</th>
+      <th scope="col">Customer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <% @completed_trips.each do |driver| %>
+    <tr>
+      <th><%= link_to driver.id, trip_path(driver) %></th>
+      <th><%= driver.distance %></th>
+      <td><%= number_to_currency(driver.amount) %></td>
+      <td>##</td>
+      <td>##</td>
+    </tr>
+<% end %>
+
+  </tbody>
+  
+</table>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

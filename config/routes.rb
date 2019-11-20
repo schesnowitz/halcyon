@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :drivers
+  
+  resources :drivers do
+    resources :driver_statements
+  end
   resources :customers
   resources :trips do
     resources :pick_drops

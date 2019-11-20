@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  driver: one
+  due_date: 2019-11-19
+  paid: false
+
+two:
+  driver: two
+  due_date: 2019-11-19
+  paid: false

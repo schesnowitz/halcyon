@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_103146) do
+ActiveRecord::Schema.define(version: 2019_11_19_055829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_103146) do
     t.string "load_contact"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "driver_statements", force: :cascade do |t|
+    t.bigint "driver_id"
+    t.date "due_date"
+    t.boolean "paid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_driver_statements_on_driver_id"
   end
 
   create_table "drivers", force: :cascade do |t|
@@ -58,12 +67,15 @@ ActiveRecord::Schema.define(version: 2019_11_14_103146) do
     t.bigint "driver_id"
     t.boolean "custom_driver_rate", default: false
     t.boolean "custom_flat_rate", default: false
+    t.string "status", default: ""
+    t.datetime "completed_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_trips_on_customer_id"
     t.index ["driver_id"], name: "index_trips_on_driver_id"
   end
 
+  add_foreign_key "driver_statements", "drivers"
   add_foreign_key "pick_drops", "trips"
   add_foreign_key "trips", "customers"
   add_foreign_key "trips", "drivers"

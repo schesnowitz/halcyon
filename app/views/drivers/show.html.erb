@@ -31,22 +31,26 @@
 <table class="table table-striped">
   <thead>
     <tr>
+    <th scope="col">Trip</th>
       <th scope="col">Distance</th>
       <th scope="col">Gross</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Driver</th>
+      <th scope="col">Customer</th>
     </tr>
   </thead>
 
   <tbody>
+
     <% @driver.trips.each do |driver| %>
     <tr>
+      <th><%= link_to driver.id, trip_path(driver) %></th>
       <th><%= driver.distance %></th>
       <td><%= number_to_currency(driver.amount) %></td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td>##</td>
+      <td>##</td>
     </tr>
 <% end %>
+
   </tbody>
   
 </table>

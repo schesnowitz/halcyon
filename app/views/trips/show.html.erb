@@ -47,6 +47,10 @@
   <%= @trip.distance %>
 </p>
 
+<p>
+  <strong>Status:</strong>
+  <%= @trip.status.inspect %>
+</p>
 
 <p>Pick Drops</p>
 <%= render @trip.pick_drops.order(created_at: :desc) %> 

@@ -16,6 +16,10 @@
     <%= f.input :final_destination_business_name %>
     <%= f.input :final_destination_address %>
     <%= f.input :distance %>
+   <% if !@trip.new_record? %> 
+ <p>Driver rate: <%= number_to_currency(@trip.driver_rate) %> </p>
+<% end %>
+    
  <span id='all_custom_driver_rate'>
     <%= f.input :custom_driver_rate %>
     <span class='hidden' id='driver_rate_id'>
@@ -30,9 +34,11 @@
  
     <span class='hidden' id='flat_rate_id'>
       <%= f.input :flat_rate %>
+    </span> 
     </span>
-    </span>
-
+    
+<%= f.input :status, collection: Trip.statuses.keys.to_a, include_blank: true, include_hidden: false %>
+<%= f.input :completed_on %>
   </div>
 
   <div class="form-actions">
