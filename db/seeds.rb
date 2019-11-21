@@ -7,10 +7,13 @@ driver1 = Driver.create!(first_name: "Steve", last_name: "McKnight", rate: 0.50)
 driver2 = Driver.create!(first_name: "Tony", last_name: "Roma", rate: 0.45)
 driver3 = Driver.create!(first_name: "Joe", last_name: "Trucker", rate: 0.38) 
 
+@countries = ["Booked", "In Progress", "Cancelled"]
 
+random_country = @countries.sample
 50.times do
   trip = Trip.create!(
-  amount: Faker::Number.between(from: 500, to: 5300) ,
+  amount: Faker::Number.between(from: 500, to: 5300),
+  status: random_country,
   origin_business_name: Faker::Company.name,
   origin_address: Faker::Address.full_address,
   final_destination_business_name: Faker::Company.name,

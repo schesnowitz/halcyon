@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_19_055829) do
+ActiveRecord::Schema.define(version: 2019_11_21_080844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,16 @@ ActiveRecord::Schema.define(version: 2019_11_19_055829) do
     t.index ["trip_id"], name: "index_pick_drops_on_trip_id"
   end
 
+  create_table "trip_to_statements", force: :cascade do |t|
+    t.bigint "trip_id"
+    t.bigint "driver_statement_id"
+    t.boolean "add_to_statement"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_statement_id"], name: "index_trip_to_statements_on_driver_statement_id"
+    t.index ["trip_id"], name: "index_trip_to_statements_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.decimal "amount"
     t.decimal "driver_rate"
@@ -65,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_11_19_055829) do
     t.string "final_destination_business_name"
     t.bigint "customer_id"
     t.bigint "driver_id"
+    t.bigint "driver_statement_id"
     t.boolean "custom_driver_rate", default: false
     t.boolean "custom_flat_rate", default: false
     t.string "status", default: ""
@@ -73,10 +84,14 @@ ActiveRecord::Schema.define(version: 2019_11_19_055829) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_trips_on_customer_id"
     t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["driver_statement_id"], name: "index_trips_on_driver_statement_id"
   end
 
   add_foreign_key "driver_statements", "drivers"
   add_foreign_key "pick_drops", "trips"
+  add_foreign_key "trip_to_statements", "driver_statements"
+  add_foreign_key "trip_to_statements", "trips"
   add_foreign_key "trips", "customers"
+  add_foreign_key "trips", "driver_statements"
   add_foreign_key "trips", "drivers"
 end

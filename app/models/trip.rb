@@ -1,10 +1,14 @@
 class Trip < ApplicationRecord
   has_many :pick_drops, dependent: :destroy
+  accepts_nested_attributes_for :pick_drops, allow_destroy: true, reject_if: proc { |att| att['address'].blank? }
+
   belongs_to :customer, optional: true
   belongs_to :driver, optional: true
+  has_many :trip_to_statements
+  has_many :driver_statements, through: :trip_to_statements
   validates_presence_of :driver
   validates_presence_of :customer
-  accepts_nested_attributes_for :pick_drops, allow_destroy: true, reject_if: proc { |att| att['address'].blank? }
+
 
   # enum status: { booked: "booked", on_route: "on_route", completed: "completed" }
 

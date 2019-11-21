@@ -12,16 +12,21 @@ class DriverStatementsController < ApplicationController
   # GET /driver_statements/1
   # GET /driver_statements/1.json
   def show 
+
+
+    @completed_trips = @driver.trips.where(["status = ?", "Completed"]).order(:id)
   end
 
   # GET /driver_statements/new
   def new
     @driver_statement = @driver.driver_statements.build
+    @statement_trips = @driver_statement.trips.build
     @completed_trips = @driver.trips.where(["status = ?", "Completed"]).order(:id)
   end
 
   # GET /driver_statements/1/edit
   def edit
+    @statement_trips = @driver_statement.trips.build
     @completed_trips = @driver.trips.where(["status = ?", "Completed"]).order(:id)
   end
 
@@ -45,6 +50,7 @@ class DriverStatementsController < ApplicationController
   # PATCH/PUT /driver_statements/1
   # PATCH/PUT /driver_statements/1.json
   def update
+    @statement_trips = @driver_statement.trips.build
     respond_to do |format|
       if @driver_statement.update(driver_statement_params)
         format.html { redirect_to driver_driver_statement_path(@driver), notice: 'Driver statement was successfully updated.' }
@@ -80,6 +86,6 @@ class DriverStatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_statement_params
-      params.require(:driver_statement).permit(:driver_id, :due_date, :paid)
+      params.require(:driver_statement).permit(:driver_id, :due_date, :paid, :trip_id, :trip, :add_to_statement, trips_attributes: Trip.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end

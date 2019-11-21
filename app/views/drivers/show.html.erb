@@ -26,27 +26,29 @@
 
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>
-
+| <%= link_to 'New Driver Statement', new_driver_driver_statement_path(@driver) %>
 
 <table class="table table-striped">
   <thead>
     <tr>
-    <th scope="col">Trip</th>
+    <th scope="col">Driver</th>
+      <th scope="col">Trip</th>
       <th scope="col">Distance</th>
       <th scope="col">Gross</th>
-      <th scope="col">Driver</th>
-      <th scope="col">Customer</th>
+      
+      <th scope="col">Status</th>
     </tr>
   </thead>
 
   <tbody>
 
-    <% @driver.trips.each do |driver| %>
+    <% @driver.trips.each do |trip| %>
     <tr>
-      <th><%= link_to driver.id, trip_path(driver) %></th>
-      <th><%= driver.distance %></th>
-      <td><%= number_to_currency(driver.amount) %></td>
-      <td>##</td>
+    <th><%= trip.driver.driver_full_name %></th>
+      <th><%= link_to trip.id, trip_path(trip) %></th>
+      <th><%= trip.distance %></th>
+      <td><%= number_to_currency(trip.amount) %></td>
+      <td><%= trip.status %></td>
       <td>##</td>
     </tr>
 <% end %>

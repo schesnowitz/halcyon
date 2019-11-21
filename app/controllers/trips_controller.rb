@@ -73,7 +73,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_rate, :custom_driver_rate, :custom_flat_rate, :flat_rate, :completed_on, :status, pick_drops_attributes: PickDrop.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_statement_id, :driver_rate, :custom_driver_rate, :custom_flat_rate, :flat_rate, :completed_on, :status, pick_drops_attributes: PickDrop.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end
 

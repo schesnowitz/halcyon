@@ -1,5 +1,5 @@
 
-<%= simple_form_for [@driver, driver_statement] do |f| %>
+<%= simple_form_for [@driver, driver_statement,] do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -9,6 +9,10 @@
     <%= f.input :due_date %>
     <%= f.input :paid %>
   </div>
+
+<%= simple_form_for :trip_to_statement do |t| %>
+<%= t.input :add_to_statement %>
+<% end %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,26 +20,39 @@
       <th scope="col">Distance</th>
       <th scope="col">Gross</th>
       <th scope="col">Driver</th>
-      <th scope="col">Customer</th>
+  
     </tr>
   </thead>
-
+<% @completed_trips.each do |ct| %>
   <tbody>
 
-    <% @completed_trips.each do |driver| %>
+    
+    
     <tr>
-      <th><%= link_to driver.id, trip_path(driver) %></th>
-      <th><%= driver.distance %></th>
-      <td><%= number_to_currency(driver.amount) %></td>
-      <td>##</td>
-      <td>##</td>
+    
+      <th><%= link_to ct.id, trip_path(ct) %></th>
+      <th><%= ct.distance %></th>
+      <td><%= number_to_currency(ct.amount) %></td> 
+    
+      <td></td>
     </tr>
-<% end %>
+
 
   </tbody>
-  
+  <% end %>
 </table>
+
+
+
+
+
+ 
+
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
+
+
+
+
