@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   resources :drivers do
-    resources :driver_statements
+    resources :driver_statements 
   end
   resources :customers
   resources :trips do

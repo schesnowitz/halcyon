@@ -8,6 +8,7 @@
 
     <%= f.input :due_date %>
     <%= f.input :paid %>
+    <%= f.collection_check_boxes(:trip_ids, @completed_trips, :id, :id) %>
   </div>
 <table class="table table-striped">
   <thead>
@@ -22,12 +23,15 @@
 
   <tbody>
 
-    <% @completed_trips.each do |driver| %>
+    <% @completed_trips.each do |trip| %>
     <tr>
-      <th><%= link_to driver.id, trip_path(driver) %></th>
-      <th><%= driver.distance %></th>
-      <td><%= number_to_currency(driver.amount) %></td>
-      <td>##</td>
+      <th><%= link_to trip.id, trip_path(trip) %></th>
+      <th><%= trip.distance %></th>
+      <td><%= number_to_currency(trip.amount) %></td>
+      <td>
+      
+
+      </td>
       <td>##</td>
     </tr>
 <% end %>

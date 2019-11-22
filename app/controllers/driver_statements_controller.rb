@@ -80,6 +80,6 @@ class DriverStatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def driver_statement_params
-      params.require(:driver_statement).permit(:driver_id, :due_date, :paid)
+      params.require(:driver_statement).permit(:driver_id, :due_date, :paid, { :trip_ids => [] })
     end
 end

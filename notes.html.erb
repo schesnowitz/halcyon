@@ -18,3 +18,19 @@
 
     <script src="../assets/lib/remodal/remodal.min.js"></script>
     <script src="../assets/lib/hover-dir/jquery.hoverdir.js"></script>
+
+
+
+          <% @completed_trips.each do |trip| %>
+
+      <%= check_box_tag "driver_statement[trip_ids][]", trip.id  %>
+      <%= link_to driver.id, trip_path(driver) %>
+      <% end %>
+
+            <% if trip.status == 'completed' %>
+      <%= f.association :trips, 
+                     as: :check_boxes, 
+                     label_method: :status, 
+                     value_method: :id,
+                     label: 'Recurrent Deductions' %>
+      <% end %>
