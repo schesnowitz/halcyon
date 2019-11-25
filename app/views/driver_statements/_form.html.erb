@@ -1,13 +1,14 @@
 
 <%= simple_form_for [@driver, driver_statement] do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
 
   <div class="form-inputs">
-  <%= f.collection_select :driver_id, Driver.order(:last_name),:id,:driver_full_name, include_blank: true %> 
+  <% f.collection_select :driver_id, Driver.order(:last_name),:id,:driver_full_name, include_blank: true %> 
 
     <%= f.input :due_date %>
+    <% if controller_name == 'driver_statements' && action_name == 'edit' %>
     <%= f.input :paid %>
+    <% end %>
     <%= f.collection_check_boxes(:trip_ids, @completed_trips, :id, :id) %>
   </div>
 <table class="table table-striped">
@@ -16,7 +17,7 @@
     <th scope="col">Trip</th>
       <th scope="col">Distance</th>
       <th scope="col">Gross</th>
-      <th scope="col">Driver</th>
+      <th scope="col">driver_statement?</th>
       <th scope="col">Customer</th>
     </tr>
   </thead>
@@ -29,11 +30,12 @@
       <th><%= trip.distance %></th>
       <td><%= number_to_currency(trip.amount) %></td>
       <td>
-      
+      <%= trip.driver_statements.ids %>
 
       </td>
       <td>##</td>
     </tr>
+    
 <% end %>
 
   </tbody>

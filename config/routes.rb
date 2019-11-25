@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   resources :customers
   resources :trips do
-    resources :pick_drops
+    resources :trip_transactions
   end
   root to: 'pages#home' 
 

@@ -1,0 +1,6 @@
+<%= trip_transaction.description %>
+
+<%= number_to_currency(trip_transaction.amount) %>
+<%= link_to 'Edit Transaction', edit_trip_trip_transaction_path(trip_transaction.trip, trip_transaction), class: 'btn btn-outline-info btn-sm' %> 
+<%= link_to 'Delete', [trip_transaction.trip, trip_transaction], method: :delete, data: {confirm: "This can't be undone!" }, class: 'btn btn-danger btn-sm'%>
+

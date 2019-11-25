@@ -24,6 +24,11 @@
   <%= @driver.hire_date %>
 </p>
 
+<p>
+ 
+  <%= link_to "Create Driver Statement", new_driver_driver_statement_path(@driver) %> 
+</p>
+
 <%= link_to 'Edit', edit_driver_path(@driver) %> |
 <%= link_to 'Back', drivers_path %>
 

@@ -10,13 +10,13 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @trip.pick_drops.build
+    @trip.trip_transactions.build
   end
 
   # GET /trips/new
   def new
     @trip = Trip.new
-    @trip.pick_drops.build
+    @trip.trip_transactions.build
   end
 
   # GET /trips/1/edit
@@ -73,7 +73,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_statement_id, :driver_rate, :custom_driver_rate, :custom_flat_rate, :flat_rate, :completed_on, :status, pick_drops_attributes: PickDrop.attribute_names.map(&:to_sym).push(:_destroy))
+      params.require(:trip).permit(:amount, :origin_business_name, :origin_address, :final_destination_business_name, :final_destination_address, :distance, :customer_id, :driver_id, :driver_statement_id, :driver_rate, :driver_pay, :custom_driver_rate, :custom_flat_rate, :flat_rate, :completed_on, :status, trip_transactions_attributes: TripTransaction.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end
 

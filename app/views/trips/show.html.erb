@@ -1,4 +1,4 @@
-<p id="notice"><%= bootstrap_flash %></p>
+
 <p>
   <strong>Customer name:</strong>
   <%= @trip.customer.name %>
@@ -19,6 +19,11 @@
 <p>
   <strong>Rate paid to driver:</strong>
   <%= number_to_currency(@trip.driver_rate) %>
+</p>
+
+<p>
+  <strong>Paid to driver:</strong>
+  <%= number_to_currency(@trip.driver_pay) %>
 </p>
 
 <p>
@@ -49,15 +54,15 @@
 
 <p>
   <strong>Status:</strong>
-  <%= @trip.status.inspect %>
+  <%= @trip.status %>
 </p>
 
-<p>Pick Drops</p>
-<%= render @trip.pick_drops.order(created_at: :desc) %> 
+<p>Transactions</p>
+<%= render @trip.trip_transactions.order(created_at: :desc) %> 
 <p>
 <p>
-  <strong>Add Pick Drop:</strong>
-  <%= render 'pick_drops/form' %> 
+  <strong>Add Transactions:</strong>
+  <%= render 'trip_transactions/form' %> 
 </p>
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>

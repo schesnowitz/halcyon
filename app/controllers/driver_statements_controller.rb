@@ -16,8 +16,18 @@ class DriverStatementsController < ApplicationController
 
   # GET /driver_statements/new
   def new
+    # trip.driver_statements.ids 
+    @driver_trips = @driver.trips
+    driver_statements = @driver.driver_statements
+
     @driver_statement = @driver.driver_statements.build
-    @completed_trips = @driver.trips.where(["status = ?", "Completed"]).order(:id)
+    @completed_trips = @driver.trips.where(["status = ?", "Completed"])
+    
+    # @completed_trips =
+    # if @driver.driver_statements.exists?(params[:id])
+    #   @completed_trips = @driver.trips.where(["status = ?", "Completed"])
+    # end
+
   end
 
   # GET /driver_statements/1/edit

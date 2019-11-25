@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% total_distance = 0 %>
 
 <p>
   <strong>Driver:</strong>
@@ -19,7 +19,7 @@
     <tr>
     <th scope="col">Trip</th>
       <th scope="col">Distance</th>
-      <th scope="col">Gross</th>
+      <th scope="col">Driver rate</th>
       <th scope="col">Driver</th>
       <th scope="col">Customer</th>
     </tr>
@@ -31,16 +31,35 @@
     <tr>
       <th><%= link_to trip.id, trip_path(trip) %></th>
       <th><%= trip.distance %></th>
-      <td><%= number_to_currency(trip.amount) %></td>
+      <td><%= number_to_currency(trip.driver_rate) %></td>
       <td>##</td>
       <td>##</td>
     </tr>
+
+    <%= total_distance = total_distance + trip.distance %>
 <% end %>
 
   </tbody>
   
 </table>
-<%= link_to 'Edit', edit_driver_driver_statement_path(@driver_statement) %> |
+<%= link_to 'Edit', edit_driver_driver_statement_path(@driver, @driver_statement) %> |
 <%= link_to 'Back', driver_driver_statements_path %>
 
+
+ <br /> 
+    <table class="table table-bordered table-striped table-condensed table-responsive">
+      <thead>
+        <tr>
+          <th>Total Miles</th>
+
+        </tr>
+      </thead>
+      <%  %>
+      <tbody>
+        <tr>
+          <td><%= total_distance %></td>
+
+        </tr>
+      </tbody>
+    </table>
 

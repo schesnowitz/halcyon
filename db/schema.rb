@@ -43,17 +43,6 @@ ActiveRecord::Schema.define(version: 2019_11_22_113432) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pick_drops", force: :cascade do |t|
-    t.string "address"
-    t.boolean "pick_up"
-    t.boolean "drop_off"
-    t.integer "order"
-    t.bigint "trip_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["trip_id"], name: "index_pick_drops_on_trip_id"
-  end
-
   create_table "statementtripizations", force: :cascade do |t|
     t.bigint "trip_id"
     t.bigint "driver_statement_id"
@@ -63,9 +52,19 @@ ActiveRecord::Schema.define(version: 2019_11_22_113432) do
     t.index ["trip_id"], name: "index_statementtripizations_on_trip_id"
   end
 
+  create_table "trip_transactions", force: :cascade do |t|
+    t.string "description"
+    t.decimal "amount"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_trip_transactions_on_trip_id"
+  end
+
   create_table "trips", force: :cascade do |t|
     t.decimal "amount"
     t.decimal "driver_rate"
+    t.decimal "driver_pay"
     t.decimal "flat_rate"
     t.string "origin_business_name"
     t.string "origin_address"
@@ -87,9 +86,9 @@ ActiveRecord::Schema.define(version: 2019_11_22_113432) do
   end
 
   add_foreign_key "driver_statements", "drivers"
-  add_foreign_key "pick_drops", "trips"
   add_foreign_key "statementtripizations", "driver_statements"
   add_foreign_key "statementtripizations", "trips"
+  add_foreign_key "trip_transactions", "trips"
   add_foreign_key "trips", "customers"
   add_foreign_key "trips", "driver_statements"
   add_foreign_key "trips", "drivers"

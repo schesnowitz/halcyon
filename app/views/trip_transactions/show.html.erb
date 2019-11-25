@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>description:</strong>
+  <%= @trip_transaction.description %>
+</p>
+
+<p>
+  <strong>amount:</strong>
+  <%= @trip_transaction.amount %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_trip_transaction_path(@trip_transaction) %> |
+<%= link_to 'Back', trip_transactions_path %>
