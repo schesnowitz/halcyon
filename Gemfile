@@ -62,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sassc'
 gem 'bootstrap', '~> 4.3.1'
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'nokogiri', '~> 1.10', '>= 1.10.4'
+gem 'nokogiri', '~> 1.11'
 gem 'nanoboxifier', '~> 0.1.1'
 gem 'redis'
 gem 'sidekiq' 
